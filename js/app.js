@@ -1,7 +1,7 @@
 $(document).ready(function() {
-  
-  console.log('Probar con el numero valido 4544164785372342');      
-  
+
+  console.log('Probar con el numero valido 4544164785372342');
+
   // Declaramos las variables que vamos a utilizar
   var $inputCard = $('#card-number');
   var $inputMonth = $('.input-month');
@@ -9,21 +9,21 @@ $(document).ready(function() {
   var $buttonNext = $('#next');
   var regexOnlyNumbers = /^[0-9]+$/;
   var labelErrorOrSuccessMessages = $('label[for="card-number"]');
-    
+
   // Identificar el evento que nos permite capturar el input del usuario
   $inputCard.on('input', function() {
     isValidCreditCard($(this).val().trim());
   });
-  
+
   // Funciones que habilita el boton del formulario
   function activeButton() {
     $buttonNext.attr('disabled', false);
-  } 
- 
+  }
+
   // Funcion que desabilita el boton del formulario
-  function desactiveButton() {  
+  function desactiveButton() {
     $buttonNext.attr('disabled', true);
-  } 
+  }
 
   // Funcion que valida la longitud del input ingresado por el usuario
   function longitud(input) {
@@ -31,7 +31,7 @@ $(document).ready(function() {
       return input;
     }
   }
-  
+
   // Funcion que valida la longitud del input ingresado por el usuario
   function soloNumeros(input) {
     var regex = /^[0-9]+$/;
@@ -39,8 +39,8 @@ $(document).ready(function() {
       return input;
     }
   }
- 
-  // Funcion que valida que sea una un numero de tarjeta valido   
+
+  // Funcion que valida que sea una un numero de tarjeta valido
   function isValidCreditCard(numberCard) {
     var creditCardNumber = soloNumeros(longitud(numberCard));
     if (creditCardNumber !== undefined) {
@@ -53,13 +53,13 @@ $(document).ready(function() {
         arr[index] = arr[index] * 2;
         if (arr[index] >= 10) {
           arr[index] = arr[index] - 9;
-        }    
+        }
       }
-     
+
       for (var index = 0; index < arr.length; index++) {
         sumaTotal = sumaTotal + parseInt(arr[index]);
       }
-     
+
       if (sumaTotal % 10 === 0) {
         console.log('Es una tarjeta valida');
         activeButton();
@@ -68,8 +68,8 @@ $(document).ready(function() {
         desactiveButton();
       }
     } else {
-      console.log('Verifique el numero de su tarjeta'); 
-      desactiveButton();  
+      console.log('Verifique el numero de su tarjeta');
+      desactiveButton();
     }
   }
 });
